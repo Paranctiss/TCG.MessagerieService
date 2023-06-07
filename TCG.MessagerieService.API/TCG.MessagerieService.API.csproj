@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -9,9 +9,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Controllers\MessagesController.cs~RF1b4b38a3.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="11.1.0" />
+    <PackageReference Include="Microsoft.AspNet.SignalR.Core" Version="2.4.3" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.3" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="TCG.Common" Version="1.3.31" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TCG.MessagerieService.Persistence\TCG.MessagerieService.Persistence.csproj" />
   </ItemGroup>
 
 </Project>
