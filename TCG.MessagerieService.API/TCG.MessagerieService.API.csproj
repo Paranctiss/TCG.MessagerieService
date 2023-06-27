@@ -8,6 +8,7 @@
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
+	<PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
   <ItemGroup>
     <None Remove="Controllers\MessagesController.cs~RF1b4b38a3.TMP" />
   </ItemGroup>

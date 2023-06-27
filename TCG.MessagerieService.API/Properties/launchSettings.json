@@ -10,7 +10,7 @@
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:5177"
     },
-    "https": {
+   /* "https": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
@@ -19,7 +19,7 @@
       },
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:7289;http://localhost:5177"
-    },
+    },*/
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,

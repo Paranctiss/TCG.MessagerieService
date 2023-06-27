@@ -2,13 +2,22 @@ using TCG.MessagerieService.API.Hub;
 using TCG.MessagerieService.Persistence;
 using TCG.MessageService.Application;
 
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddSignalR();
-builder.Services.AddCors(options => {
-    options.AddPolicy("CORSPolicy", builder => builder.AllowAnyMethod().AllowAnyHeader().AllowCredentials().SetIsOriginAllowed((hosts) => true));
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      builder =>
+                      {
+                          builder
+                            .WithOrigins("*") // specifying the allowed origin
+                            .WithMethods("GET", "POST", "PUT", "DELETE") // defining the allowed HTTP method
+                            .AllowAnyHeader(); // allowing any header to be sent
+                      });
 });
 
 builder.Services.AddControllers();
@@ -30,7 +39,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors("CORSPolicy");
+app.UseCors(MyAllowSpecificOrigins); ;
 
 app.UseRouting();
 
@@ -42,7 +51,7 @@ app.UseEndpoints(endpoints =>
     endpoints.MapHub<MessageHub>("/chatHub");
 });
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.MapControllers();
 
