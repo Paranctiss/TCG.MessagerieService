@@ -52,11 +52,14 @@ namespace TCG.MessagerieService.Persistence.Repositories
         {
             var filter = Builders<conversation>.Filter.ElemMatch(x => x.users, u => u.id == idUser);
             var conversations = await _collection.Find(filter).ToListAsync();
+
+            conversations = conversations.OrderByDescending(c => c.messages.Max(m => m.dateEnvoi)).ToList();
+
             conversations.ForEach(c =>
             {
                 if (c.messages != null && c.messages.Count > 1)
                 {
-                    var mostRecentMessage = c.messages.OrderBy(m => m.dateEnvoi).First();
+                    var mostRecentMessage = c.messages.OrderByDescending(m => m.dateEnvoi).First();
                     c.messages.Clear();
                     c.messages.Add(mostRecentMessage);
                 }
