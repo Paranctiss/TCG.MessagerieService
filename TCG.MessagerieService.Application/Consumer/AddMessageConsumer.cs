@@ -24,6 +24,7 @@ public class AddMessageConsumer : IConsumer<AddMessage>
         {
             var users = JsonSerializer.Deserialize<List<user>>(message.users); 
             var messageConv = JsonSerializer.Deserialize<message>(message.message);
+            var salePost = JsonSerializer.Deserialize<salePost>(message.merchPost);
 
             if (string.IsNullOrEmpty(messageConv.id))
             {
@@ -35,7 +36,7 @@ public class AddMessageConsumer : IConsumer<AddMessage>
                 }
             }
 
-            // On récupère la conversation si elle existe
+            // On rï¿½cupï¿½re la conversation si elle existe
             var conversation = await _mongoRepositoryConversation.GetAsync(users.Select(u => u.id).ToList(), message.idMerchPost);
 
             if (conversation != null)
@@ -44,11 +45,11 @@ public class AddMessageConsumer : IConsumer<AddMessage>
                 {
                     foreach (var m in conversation.messages)
                     {
-                        // On parcours les offres de tous les messages, si l'offre existe déjà, on la met à jour.
+                        // On parcours les offres de tous les messages, si l'offre existe dï¿½jï¿½, on la met ï¿½ jour.
                         if (m.offre != null && m.offre.etat == 'C')
                         {
-                            // Si l'offre est en état créé,
-                            // cela signifie que le user change son offre par lui même donc il annule son offre précédente.
+                            // Si l'offre est en ï¿½tat crï¿½ï¿½,
+                            // cela signifie que le user change son offre par lui mï¿½me donc il annule son offre prï¿½cï¿½dente.
                             m.offre.etat = 'A';
                         }
                     }
@@ -63,6 +64,7 @@ public class AddMessageConsumer : IConsumer<AddMessage>
                     id = Guid.NewGuid().ToString(),
                     users = users,
                     merchPostId = message.idMerchPost,
+                    merchPost = salePost,
                     messages = new List<message> { messageConv }
                 };
 

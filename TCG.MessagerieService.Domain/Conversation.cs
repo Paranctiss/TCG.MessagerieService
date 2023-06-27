@@ -10,6 +10,7 @@ namespace TCG.MessagerieService.Domain
         public string id { get; set; }
         public List<message> messages { get; set; }
         public string merchPostId { get; set; }
+        public salePost merchPost { get; set; }
         public List<user> users { get; set; }
     }
 
@@ -41,5 +42,17 @@ namespace TCG.MessagerieService.Domain
         public int id { get; set; }
         public string userName { get; set; }
         public string photoProfil { get; set; }
+    }
+
+    public class salePost
+    {
+        public Guid Id { get; set; }
+        public string ItemId { get; set; }
+        public int GradingId { get; set; }
+        public string Name { get; set; }
+        public string Image { get; set; }
+        public string IdExtension { get; set; }
+        public string LibelleExtension { get; set; }
+        public decimal Price { get; set; }
     }
 }

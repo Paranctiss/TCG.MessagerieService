@@ -33,7 +33,6 @@ public static class DependencyInjection
                 ////On recupère la config de seeting json pour rabbitMQ
                 var rabbitMQSettings = config.GetSection(nameof(RabbitMQSettings)).Get<RabbitMQSettings>();
                 configurator.Host(new Uri(rabbitMQSettings.Host));
-                configurator.ConfigureEndpoints(context);
                 // Retry policy for consuming messages
                 configurator.UseMessageRetry(retryConfig =>
                 {
