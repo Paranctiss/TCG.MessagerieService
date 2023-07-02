@@ -49,6 +49,7 @@ namespace TCG.MessagerieService.Domain
         public Guid Id { get; set; }
         public string ItemId { get; set; }
         public int GradingId { get; set; }
+        public int UserId { get; set; }
         public string Name { get; set; }
         public string Image { get; set; }
         public string IdExtension { get; set; }
