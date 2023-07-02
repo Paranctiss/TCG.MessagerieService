@@ -22,6 +22,8 @@ namespace TCG.MessagerieService.Domain
         public string id { get; set; }
         public offre offre { get; set; }
         public int idUserEnvoi { get; set; }
+        public int sellerId { get; set; }
+        public int buyerId { get; set; }
         public DateTime dateEnvoi { get; set; }
         public string texte { get; set; }
     }
