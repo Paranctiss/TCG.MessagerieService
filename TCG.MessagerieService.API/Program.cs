@@ -14,11 +14,9 @@ builder.Services.AddCors(options =>
                       builder =>
                       {
                           builder
-                            //.WithOrigins("*") // specifying the allowed origin
+                            .WithOrigins("*") // specifying the allowed origin
                             .WithMethods("GET", "POST", "PUT", "DELETE") // defining the allowed HTTP method
-                            .AllowAnyHeader()
-                            .AllowCredentials() // allowing any header to be sent
-                            .SetIsOriginAllowed((hosts) => true);
+                            .AllowAnyHeader(); // allowing any header to be sent
                       });
 });
 
